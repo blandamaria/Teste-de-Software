@@ -15,3 +15,6 @@ O **EcoCondo** é uma plataforma web voltada para a gestão sustentável e colab
 * **Gestão Financeira de Consumo:** Registro e acompanhamento mensal de contas de água/energia do condomínio.
 * **Comunicação e Relatórios:** Mural de avisos publicado pelo síndico para os moradores e relatórios consolidados dos indicadores de sustentabilidade.
 
+* Os arquivos dos testes estão vinculados nesse diretório
+*  
+
