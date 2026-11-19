@@ -17,6 +17,7 @@ O **EcoCondo** é uma plataforma web voltada para a gestão sustentável e colab
 
 
 
-Os arquivos dos testes estão vinculados nesse diretório
-   
+Os arquivos utilizados nos testes estão presentes nos relatórios, e também disponibilizamos uma pasta específica com os vídeos das execuções.
+
+Nem todos os vídeos gravados correspondem a todos os testes realizados. Foram gravados vídeos para alguns dos cenários, porém a completude dos testes manuais está devidamente documentada no template, com os respectivos resultados e prints de evidência de cada teste realizado.   
 
