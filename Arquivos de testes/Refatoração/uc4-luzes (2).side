@@ -1,0 +1,171 @@
+{
+  "id": "e4a1b2c3-d4e5-4f6a-8b9c-0d1e2f3a4b5c",
+  "version": "2.0",
+  "name": "EcoCondo - UC4 Energia e Luzes",
+  "url": "http://localhost:8080",
+  "tests": [
+    {
+      "id": "c1d2e3f4-a5b6-4c7d-8e9f-0a1b2c3d4e5f",
+      "name": "TS-01 - Fluxo completo de registro de desligamento de luz",
+      "commands": [
+        {
+          "id": "cmd-01",
+          "comment": "1. Abre a tela inicial do EcoCondo",
+          "command": "open",
+          "target": "/",
+          "targets": [],
+          "value": ""
+        },
+        {
+          "id": "cmd-02",
+          "comment": "2. Clica no card 'Morador' na tela inicial",
+          "command": "click",
+          "target": "xpath=//a[@href='/login/morador']",
+          "targets": [
+            ["xpath=//a[@href='/login/morador']", "xpath:attributes"],
+            ["xpath=//a[contains(.,'Morador')]", "xpath:innerText"]
+          ],
+          "value": ""
+        },
+        {
+          "id": "cmd-03",
+          "comment": "3. Aguarda o formulário de login carregar",
+          "command": "waitForElementVisible",
+          "target": "css=input[placeholder='CPF']",
+          "targets": [
+            ["css=input[placeholder='CPF']", "css:finder"]
+          ],
+          "value": "3000"
+        },
+        {
+          "id": "cmd-04",
+          "comment": "4. Preenche o CPF de um morador real cadastrado no banco",
+          "command": "type",
+          "target": "css=input[placeholder='CPF']",
+          "targets": [
+            ["css=input[placeholder='CPF']", "css:finder"]
+          ],
+          "value": "09949050685"
+        },
+        {
+          "id": "cmd-05",
+          "comment": "5. Preenche a senha do morador",
+          "command": "type",
+          "target": "css=input[placeholder='Digite sua senha']",
+          "targets": [
+            ["css=input[placeholder='Digite sua senha']", "css:finder"]
+          ],
+          "value": "cC0540121212-)"
+        },
+        {
+          "id": "cmd-06",
+          "comment": "6. Submete o login real na API (POST /api/morador/login)",
+          "command": "click",
+          "target": "xpath=//button[@type='submit']",
+          "targets": [
+            ["xpath=//button[@type='submit']", "xpath:attributes"],
+            ["xpath=//button[contains(.,'Entrar')]", "xpath:innerText"]
+          ],
+          "value": ""
+        },
+        {
+          "id": "cmd-07",
+          "comment": "7. Aguarda redirecionamento após autenticação real no backend",
+          "command": "waitForElementPresent",
+          "target": "xpath=//a[@href='/morador/luzes']",
+          "targets": [
+            ["xpath=//a[@href='/morador/luzes']", "xpath:attributes"],
+            ["xpath=//a[contains(.,'Registrar desligamento das luzes externas')]", "xpath:innerText"]
+          ],
+          "value": "5000"
+        },
+        {
+          "id": "cmd-08",
+          "comment": "8. Clica no menu lateral 'Registrar desligamento das luzes externas'",
+          "command": "click",
+          "target": "xpath=//a[@href='/morador/luzes']",
+          "targets": [
+            ["xpath=//a[@href='/morador/luzes']", "xpath:attributes"]
+          ],
+          "value": ""
+        },
+        {
+          "id": "cmd-09",
+          "comment": "9. Valida que abriu a tela correta (UC4)",
+          "command": "assertText",
+          "target": "css=h1",
+          "targets": [
+            ["css=h1", "css:finder"]
+          ],
+          "value": "Registrar desligamento das luzes externas"
+        },
+        {
+          "id": "cmd-10",
+          "comment": "10. RN02: Valida que o botão Confirmar está bloqueado (disabled) sem seleção",
+          "command": "assertNotEditable",
+          "target": "xpath=//button[contains(.,'Confirmar')]",
+          "targets": [
+            ["xpath=//button[contains(.,'Confirmar')]", "xpath:innerText"]
+          ],
+          "value": ""
+        },
+        {
+          "id": "cmd-11",
+          "comment": "11. Seleciona o botão da localização 'Garagem'",
+          "command": "click",
+          "target": "xpath=//button[contains(.,'Garagem')]",
+          "targets": [
+            ["xpath=//button[contains(.,'Garagem')]", "xpath:innerText"]
+          ],
+          "value": ""
+        },
+        {
+          "id": "cmd-12",
+          "comment": "12. RN02: Valida que o botão Confirmar foi desbloqueado após a seleção",
+          "command": "assertEditable",
+          "target": "xpath=//button[contains(.,'Confirmar')]",
+          "targets": [
+            ["xpath=//button[contains(.,'Confirmar')]", "xpath:innerText"]
+          ],
+          "value": ""
+        },
+        {
+          "id": "cmd-13",
+          "comment": "13. Clica em Confirmar (dispara POST /api/luzes real para o backend)",
+          "command": "click",
+          "target": "xpath=//button[contains(.,'Confirmar')]",
+          "targets": [
+            ["xpath=//button[contains(.,'Confirmar')]", "xpath:innerText"]
+          ],
+          "value": ""
+        },
+        {
+          "id": "cmd-14",
+          "comment": "14. Valida que a API respondeu sucesso (201) e redirecionou de volta ao painel (/morador)",
+          "command": "waitForElementPresent",
+          "target": "xpath=//h2[contains(.,'Mural')]",
+          "targets": [
+            ["xpath=//h2[contains(.,'Mural')]", "xpath:innerText"]
+          ],
+          "value": "5000"
+        }
+      ]
+    }
+  ],
+  "suites": [
+    {
+      "id": "s1a2b3c4-d5e6-4f7a-8b9c-0d1e2f3a4b5c",
+      "name": "UC4 - Energia e Luzes",
+      "persistSession": false,
+      "parallel": false,
+      "timeout": 300,
+      "tests": [
+        "c1d2e3f4-a5b6-4c7d-8e9f-0a1b2c3d4e5f"
+      ]
+    }
+  ],
+  "urls": [
+    "http://localhost:8080/"
+  ],
+  "plugins": []
+}
